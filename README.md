@@ -1,5 +1,5 @@
-govalidator
-===========
+# govalidator
+
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/asaskevich/govalidator?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) [![GoDoc](https://godoc.org/github.com/asaskevich/govalidator?status.png)](https://godoc.org/github.com/asaskevich/govalidator)
 [![Build Status](https://travis-ci.org/asaskevich/govalidator.svg?branch=master)](https://travis-ci.org/asaskevich/govalidator)
 [![Coverage](https://codecov.io/gh/asaskevich/govalidator/branch/master/graph/badge.svg)](https://codecov.io/gh/asaskevich/govalidator) [![Go Report Card](https://goreportcard.com/badge/github.com/asaskevich/govalidator)](https://goreportcard.com/report/github.com/asaskevich/govalidator) [![GoSearch](http://go-search.org/badge?id=github.com%2Fasaskevich%2Fgovalidator)](http://go-search.org/view?id=github.com%2Fasaskevich%2Fgovalidator) [![Backers on Open Collective](https://opencollective.com/govalidator/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/govalidator/sponsors/badge.svg)](#sponsors) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fasaskevich%2Fgovalidator.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fasaskevich%2Fgovalidator?ref=badge_shield)
@@ -7,27 +7,26 @@ govalidator
 A package of validators and sanitizers for strings, structs and collections. Based on [validator.js](https://github.com/chriso/validator.js).
 
 #### Installation
+
 Make sure that Go is installed on your computer.
 Type the following command in your terminal:
 
-	go get github.com/asaskevich/govalidator/v11
-
-or you can get specified release of the package with `gopkg.in`:
-
-	go get gopkg.in/asaskevich/govalidator.v10
+```bash
+go get github.com/camry/govalidator
+```
 
 After it the package is ready to use.
 
-
 #### Import package in your project
+
 Add following line in your `*.go` file:
 ```go
-import "github.com/asaskevich/govalidator/v11"
+import "github.com/camry/govalidator"
 ```
 If you are unhappy to use long `govalidator`, you can do something like this:
 ```go
 import (
-  valid "github.com/asaskevich/govalidator/v11"
+  valid "github.com/camry/govalidator"
 )
 ```
 
@@ -37,7 +36,7 @@ import (
 `SetNilPtrAllowedByRequired` causes validation to pass when struct fields marked by `required` are set to nil. This is disabled by default for consistency, but some packages that need to be able to determine between `nil` and `zero value` state can use this. If disabled, both `nil` and `zero` values cause validation errors.
 
 ```go
-import "github.com/asaskevich/govalidator/v11"
+import "github.com/camry/govalidator"
 
 func init() {
   govalidator.SetFieldsRequiredByDefault(true)
@@ -69,7 +68,7 @@ type exampleStruct2 struct {
 ##### Custom validator function signature
 A context was added as the second parameter, for structs this is the object being validated – this makes dependent validation possible.
 ```go
-import "github.com/asaskevich/govalidator/v11"
+import "github.com/camry/govalidator"
 
 // old signature
 func(i interface{}) bool
@@ -81,7 +80,7 @@ func(i interface{}, o interface{}) bool
 ##### Adding a custom validator
 This was changed to prevent data races when accessing custom validators.
 ```go
-import "github.com/asaskevich/govalidator/v11"
+import "github.com/camry/govalidator"
 
 // before
 govalidator.CustomTypeTagMap["customByteArrayValidator"] = func(i interface{}, o interface{}) bool {
@@ -485,7 +484,7 @@ println(govalidator.WhiteList("a3a43a5a4a3a2a23a4a5a4a3a4", "a-z") == "aaaaaaaaa
 ###### Custom validation functions
 Custom validation using your own domain specific validators is also available - here's an example of how to use it:
 ```go
-import "github.com/asaskevich/govalidator/v11"
+import "github.com/camry/govalidator"
 
 type CustomByteArray [6]byte // custom types are supported and can be validated
 
